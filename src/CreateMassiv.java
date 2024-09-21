@@ -16,15 +16,16 @@ public class CreateMassiv {
         int a = myObj.nextInt();
         int b = myObj.nextInt();
         int constant = arr.length / 2;
-        if (a < b) {
+        if (a < b && arraylen>2) {
             arr[constant - 1] = a;
             arr[constant + 1] = b;
             System.out.print(arr[constant - 1] + "," + arr[constant] + "," + arr[constant + 1]);
-        } else if (a > b) {
+        } else if (a > b && arraylen>2) {
             arr[constant - 1] = b;
             arr[constant + 1] = a;
             System.out.print(arr[constant - 1] + ","+arr[constant] + arr[constant + 1]);
         }
+        else{System.out.println("Wrong initials");}
 
 
     }

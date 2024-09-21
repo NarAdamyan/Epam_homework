@@ -11,7 +11,7 @@ public class ChangePartArrays {
 
 
         int[] arr = new int[n];
-        if (n < a + 4) {
+        if (n > 0 && a > 0 && n < a + 4) {
             System.out.println("Wrong index!!! ");
             System.exit(0);
         } else if (n >= a + 4) {

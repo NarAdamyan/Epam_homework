@@ -14,17 +14,12 @@ public class ArraysLength {
                 System.out.println("Please enter positiv number!!!");
                 break;
             case 3:
-                arrOfnumbers = new int[3];
-                System.out.print("Array length is: " + arrOfnumbers.length);
-                break;
             case 4:
-                arrOfnumbers = new int[4];
+            case 5:
+                arrOfnumbers = new int[userinput];
                 System.out.print("Array length is: " + arrOfnumbers.length);
                 break;
-            case 5:
-                arrOfnumbers = new int[5];
-                System.out.print("Array length is: "+arrOfnumbers.length);
-                break;
+
             case 6:
                 arrOfnumbers = new int[10];
                 System.out.print("Array length is: "+arrOfnumbers.length);
