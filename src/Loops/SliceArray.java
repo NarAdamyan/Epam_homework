@@ -19,7 +19,6 @@ public class SliceArray {
             System.exit(0);
         }
         int[] arr = {1, 15, 3, 4, 5, 6, 6};
-//        int[] arr=new int[arrlen];
         int[] newarr = new int[end - start];
         for (int count = start; count < end; count++) {
             newarr[count - 1] = arr[end - count];
