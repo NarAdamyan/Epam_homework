@@ -12,21 +12,20 @@ public class IncomeTax {
 
     static double calculateIncomeTax(double salary) {
         double tax = (salary * 20) / 100;
-        double result = salary - tax;
 
         if (salary > 0) {
-            System.out.println("Your salary is: " + result);
+            System.out.println("Income tax is: " + tax);
         } else {
             System.out.println("Not a positive salary");
         }
-        return result;
+        return tax;
     }
 
     static double calculateIncomeTax(double salary, double taxrate) {
-        double result = salary - (salary * taxrate / 100);
+        double result = salary * taxrate / 100;
 
         if (salary > 0 && taxrate > 0) {
-            System.out.println("Your salary is " + result);
+            System.out.println("Income tax " + result);
         } else {
             System.out.println("Not a positive salary or tax");
 
@@ -37,10 +36,10 @@ public class IncomeTax {
     }
 
     static double calculateIncomeTax(double salary, boolean isItSector) {
-        double result = salary - (salary * 10 / 100);
+        double result = salary * 10 / 100;
 
         if (isItSector && salary > 0) {
-            System.out.println("Your tax is 10%: " + result);
+            System.out.println("Your tax is 10%, and equal to: " + result);
         } else if (!isItSector && salary > 0) {
             System.out.println("Your salary not taxed");
         } else {
