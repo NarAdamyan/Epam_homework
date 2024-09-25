@@ -1,8 +1,8 @@
 package Methods;
 
-public class NegativOrPostive {
+public class NegativeOrPositive {
     public static void main(String[] args) {
-        int[] arr = {-1, -2, -3};
+        int[] arr = {0, 0};
         double result = deviseToNegative(arr);
         System.out.println("Result: " + result);
 
@@ -13,7 +13,7 @@ public class NegativOrPostive {
         int negativeResult = 0;
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] >= 0) {
+            if (arr[i] > 0) {
                 positiveResult += arr[i];
             } else {
                 negativeResult += arr[i];
@@ -30,7 +30,6 @@ public class NegativOrPostive {
                 System.out.println("No postive numbers found.The result is " + -1);
             }
 
-            return negativeResult;
         }
 
         double result = (double) positiveResult / negativeResult;
