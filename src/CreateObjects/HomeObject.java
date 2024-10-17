@@ -1,5 +1,4 @@
 package CreateObjects;
-
 public class HomeObject {
     int bathroom = 12;
     int livingRoom;
