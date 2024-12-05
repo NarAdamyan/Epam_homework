@@ -1,41 +1,15 @@
 package Electronica;
 
 public class Bascet {
-    protected Electronica[] bascet;
-    protected int count = 0; // Tracks the number of items in the basket
-    protected Shop shop; // Assuming this will be used later
-//    protected  boolean giftAdded ; // Initialize the flag
+    protected Electronica[] basket;
+    protected int count;
 
-
-    // Constructor to initialize the basket with a specified capacity
-    public Bascet(int capacity) {
-        this.bascet = new Electronica[capacity]; // Initialize the basket array
-//        this.giftAdded = false; // Initialize the flag
-
+    public Bascet(int size) {
+        basket = new Electronica[size];
+        count = 0;
     }
 
-    public void addItem(Electronica item) {
-        if (count >= bascet.length) {
-            System.out.println("Basket is full. Cannot add more items.");
-            return;
-        }
-
-        // Check if the item already exists in the basket by comparing 'id'
-        for (Electronica e : bascet) {
-            if (e != null && e.id.equals(item.id)) {  // Compare 'id' of non-null items
-                System.out.println("This item is already in your basket."+e.id);
-                return;
-            }
-        }
-
-        // Add the item to the basket
-        this.bascet[count] = item;
-        System.out.println("Item added to the basket: " + this.bascet[count]);
-        count++; // Increment the count
-    }
-
-    // Method to display all items in the basket
-    public void displayBasket() {
+    public void displayItems() {
         if (count == 0) {
             System.out.println("Basket is empty.");
             return;
@@ -43,83 +17,67 @@ public class Bascet {
 
         System.out.println("Items in the basket:");
         for (int i = 0; i < count; i++) {
-            Electronica item = bascet[i];
-            if (item != null) {
-                if (item.type.equals("gift")) { // Identify the gift
-                    System.out.println("- Gift: " + item.type + " (" + item.type + ") $" + item.price);
-                } else {
-                    System.out.println("- " + item.type + " (" + item.type + ") $" + item.price);
+            Electronica item = basket[i];
+            if (item instanceof Gift) {
+                System.out.println("- Gift: " + item.type + " (" + item.brand + ") $" + item.price);
+            } else {
+                System.out.println("- " + item.type + " (" + item.brand + ") $" + item.price);
+            }
+        }
+    }
+
+    public void addItem(Electronica item) {
+        if (item == null) {
+            System.out.println("Cannot add null item.");
+            return;
+        }
+
+        if (count >= basket.length) {
+            System.out.println("Basket is full. Cannot add more items.");
+            return;
+        }
+
+        for (int i = 0; i < count; i++) {
+            if (basket[i] != null && basket[i].id.equals(item.id)) {
+                System.out.println("This item is already in the basket: " + item.id);
+                return;
+            }
+        }
+
+        basket[count] = item;
+        count++;
+        System.out.println("Added item to basket: " + item.type + " (" + item.brand + ") $" + item.price);
+    }
+
+    public double checkout() {
+        double total = 0;
+        int giftCount = 0;
+
+        // Calculate total price and count gifts
+        for (int i = 0; i < count; i++) {
+            if (basket[i] instanceof Gift && isAvailableGift(basket[i])) {
+                giftCount++;
+            } else {
+                total += basket[i].price; // Add price of non-gift items
+            }
+        }
+        System.out.println("Your total price is " + total);
+        return total;
+    }
+
+    public boolean isAvailableGift(Electronica gift) {
+        for (Electronica e : basket) {
+            if (e != null) {
+                if (e.type == TypesElectronic.NOTEBOOK && gift.type == TypesElectronic.MOBILE) {
+                    System.out.println("Available gift: Mobile for Notebook");
+                    return true;
+                } else if (e.type == TypesElectronic.TV && gift.type == TypesElectronic.HAIRDRYER) {
+                    System.out.println("Available gift: Hairdryer for TV");
+                    return true;
                 }
             }
         }
+        System.out.println("Not available gift");
+        return false;
     }
-
-
-    public void removeItem(String id) {
-        boolean found = false;
-
-        // Find the item by comparing 'id'
-        for (int i = 0; i < this.count; i++) {
-            if (this.bascet[i] != null && this.bascet[i].id.equals(id)) {
-                found = true;
-
-                // Save the item that will be removed
-                Electronica removedItem = this.bascet[i];
-
-                // Shift elements to the left to fill the gap
-                for (int j = i; j < this.count - 1; j++) {
-                    this.bascet[j] = this.bascet[j + 1];
-                }
-
-                // Clear the last element
-                this.bascet[this.count - 1] = null;
-
-                // Decrease the count
-                this.count--;
-
-                // Print the correct removed item
-                System.out.println("Item removed from the basket: " + removedItem);
-                break;
-            }
-        }
-
-        if (!found) {
-            System.out.println("Item not found in the basket.");
-        }
-    }
-
-
-
-//    public int checkout() {
-//        int sum = 0;
-//
-//        for (Electronica e : bascet) {
-//            if (e != null ) { // Check for non-null elements
-//                sum += e.price; // Add the price of the item
-//            }
-//        }
-//        System.out.println("Your total price is "+sum);
-//        return sum;
-//
-// Method to calculate the checkout price
-public int checkout() {
-    int sum = 0;
-    boolean giftFound = false;
-
-    for (Electronica e : bascet) {
-        if (e != null) {
-            // If a gift has been added, exclude its price from the total
-            if (!giftFound && e.type.equals("gift")) {
-                giftFound = true; // Mark gift as found
-                continue; // Skip adding the gift's price
-            }
-            sum += e.price; // Add the price of non-gift items
-        }
-    }
-
-    System.out.println("Your total price is $" + sum);
-    return sum;
-
-    }
-
 }
