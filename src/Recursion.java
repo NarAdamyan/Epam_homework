@@ -1,5 +1,6 @@
 public class Recursion {
     public static void main(String[] args) {
+
         toBinar(10);
     }
 
@@ -9,3 +10,4 @@ public class Recursion {
         System.out.println(num % 2);
     }
 }
+
