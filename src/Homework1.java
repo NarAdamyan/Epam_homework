@@ -17,6 +17,8 @@ public class Homework1 {
         myObj.close();
     }
 }
+
+
 class FirstPart {
     void display() {
         Scanner myObj = new Scanner(System.in);
@@ -39,6 +41,8 @@ class FirstPart {
 
     }
 }
+
+
 class SecondPart {
     void display() {
         Scanner myObj = new Scanner(System.in);
@@ -54,6 +58,8 @@ class SecondPart {
 
     }
 }
+
+
 class ThirdPart {
     void display() {
         Scanner myObj = new Scanner(System.in);
@@ -65,6 +71,8 @@ class ThirdPart {
 
     }
 }
+
+
 class ForthPart {
     void display() {
         Scanner myObj = new Scanner(System.in);
